@@ -1,0 +1,4 @@
+android_ndk_cache_dir: /tmp/ansible-cache
+android_ndk_version: "12"
+android_ndk_zipfile: "android-ndk-r{{android_ndk_version}}-linux-x86_64.zip"
+android_ndk_folder: "android-ndk-r{{android_ndk_version}}"

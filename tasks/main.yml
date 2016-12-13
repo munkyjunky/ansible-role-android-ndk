@@ -1,0 +1,21 @@
+---
+
+- name: Download Android NDK {{android_ndk_version}}
+  get_url: dest={{android_ndk_cache_dir}} url=http://dl.google.com/android/repository/{{android_ndk_zipfile}}
+  become: yes
+  tags: [android]
+
+- name: Extract Android NDK
+  unarchive: copy=no src={{android_ndk_cache_dir}}/{{android_ndk_zipfile}} dest=/opt/
+  become: yes
+  tags: [android]
+
+- name: Add Android environment variables to profile
+  template: src=android-ndk.j2 dest=/etc/profile.d/android-ndk.sh
+  become: yes
+  tags: [android]
+
+- name: Clean up files
+  file: name={{android_ndk_cache_dir}}/{{android_ndk_zipfile}} state=absent
+  become: yes
+  tags: [android]
